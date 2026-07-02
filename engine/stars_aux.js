@@ -1,0 +1,4 @@
+const { mod } = require('./constants');
+function triad(b, maps){ if([2,6,10].includes(b)) return maps.a; if([8,0,4].includes(b)) return maps.b; if([5,9,1].includes(b)) return maps.c; return maps.d; }
+function auxStars(yearStem, yearBranch, m, h){ const lucun={甲:2,乙:3,丙:5,丁:6,戊:5,己:6,庚:8,辛:9,壬:11,癸:0}[yearStem]; const kuiyue = ['甲','戊','庚'].includes(yearStem)?[1,7]:['乙','己'].includes(yearStem)?[0,8]:['丙','丁'].includes(yearStem)?[11,9]:yearStem==='辛'?[6,2]:[3,5]; const fireStart=triad(yearBranch,{a:1,b:2,c:3,d:9}); const bellStart=triad(yearBranch,{a:3,b:10,c:10,d:10}); return {禄存:lucun,擎羊:mod(lucun+1),陀罗:mod(lucun-1),天魁:kuiyue[0],天钺:kuiyue[1],文昌:mod(10-h),文曲:mod(4+h),左辅:mod(4+m-1),右弼:mod(10-(m-1)),火星:mod(fireStart+h),铃星:mod(bellStart+h),地劫:mod(11+h),地空:mod(11-h),天马:triad(yearBranch,{a:8,b:2,c:11,d:5})}; }
+module.exports={ auxStars };

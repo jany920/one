@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>紫微斗数排盘小程序</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Zi Wei Dou Shu · Phase 1</p>
+        <h1>紫微斗数排盘小程序</h1>
+        <p class="subtitle">输入公历生日、性别、经度与时区，生成可供前端渲染和 AI 解读层消费的结构化命盘 JSON。</p>
+      </section>
+
+      <section class="panel input-panel">
+        <form id="chart-form">
+          <label>
+            性别
+            <select name="gender">
+              <option value="female" selected>女</option>
+              <option value="male">男</option>
+            </select>
+          </label>
+          <label>
+            公历生日时间
+            <input name="datetime" type="datetime-local" value="1983-01-19T20:00" required />
+          </label>
+          <label>
+            出生地经度
+            <input name="longitude" type="number" step="0.001" value="121.467" required />
+          </label>
+          <label>
+            时区
+            <input name="timezone" type="text" value="+08:00" required />
+          </label>
+          <label>
+            年龄范围
+            <input name="ageRange" type="text" value="1-60" required />
+          </label>
+          <label class="checkbox">
+            <input name="trueSolarTime" type="checkbox" checked />
+            启用真太阳时经度校正
+          </label>
+          <button type="submit">生成命盘</button>
+        </form>
+      </section>
+
+      <section id="message" class="message" hidden></section>
+
+      <section id="summary" class="panel summary" hidden></section>
+      <section id="palaces" class="palace-grid" hidden></section>
+
+      <section class="panel json-panel">
+        <div class="panel-heading">
+          <h2>结构化 JSON</h2>
+          <button id="copy-json" type="button">复制 JSON</button>
+        </div>
+        <pre id="json-output">点击“生成命盘”后显示完整 JSON。</pre>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
