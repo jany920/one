@@ -1,0 +1,11 @@
+const BRANCHES = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const STEMS = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const PALACE_NAMES = ['命宫','兄弟','夫妻','子女','财帛','疾厄','迁移','交友','官禄','田宅','福德','父母'];
+const mod = (n, m = 12) => ((n % m) + m) % m;
+const branchName = i => BRANCHES[mod(i, 12)];
+const stemName = i => STEMS[mod(i, 10)];
+const branchIndex = name => BRANCHES.indexOf(name);
+const stemIndex = name => STEMS.indexOf(name);
+const isYangStem = stem => stemIndex(stem) % 2 === 0;
+const isForward = (yearStem, gender) => (isYangStem(yearStem) && gender === 'male') || (!isYangStem(yearStem) && gender === 'female');
+module.exports = { BRANCHES, STEMS, PALACE_NAMES, mod, branchName, stemName, branchIndex, stemIndex, isYangStem, isForward };
