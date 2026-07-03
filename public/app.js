@@ -28,7 +28,7 @@ function buildInput(formData) {
       true_solar_time: formData.get('trueSolarTime') === 'on',
       year_boundary: 'lunar_new_year',
       leap_month_rule: 'split_half',
-      equation_of_time: false,
+      equation_of_time: true,
       age_range: parseAgeRange(formData.get('ageRange')),
     },
   };
@@ -60,6 +60,7 @@ function renderSummary(meta, bornSihua) {
     ['身宫', meta.shen_gong],
     ['命主', meta.ming_zhu],
     ['身主', meta.shen_zhu],
+    ['大限流年', `${meta.fate_period_count || 12} 个大限 / ${meta.fate_year_count || 120} 个流年`],
   ];
   summary.innerHTML = `
     <h2>命盘摘要</h2>
